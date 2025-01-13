@@ -2,6 +2,8 @@
 
 ## Requirements :
 
+- Python 3.8 minimum (pour FastAPI)
+
 ## Installation :
 
 1. `git clone` this repository
