@@ -7,5 +7,5 @@
 ## Installation :
 
 1. `git clone` this repository
-2. `cd api_microservices`
+2. `cd api_microservices_py`
 3. `pip install -r requirements.txt`
