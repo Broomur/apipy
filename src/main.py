@@ -3,8 +3,6 @@ from . import models, schemas
 from .database import engine, SessionLocal
 from typing import List
 
-models.Base.metadata.create_all(bind=engine)
-
 app = FastAPI()
 
 
