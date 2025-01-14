@@ -31,7 +31,7 @@ def read_task(task_id: int):
 
 @app.post("/tasks", response_model=schemas.TaskResponse)
 def create_task(new_task: schemas.TaskCreate):
-    task = models.TaskModel.create(title=new_task.title, done=new_task.done)
+    task = models.TaskModel.create(**new_task.dict())
     return task
 
 
@@ -39,7 +39,7 @@ def create_task(new_task: schemas.TaskCreate):
 def update_task(task_id: int, updated_task: schemas.TaskCreate):
     task = models.TaskModel.where(id=task_id).first()
     if task:
-        task.update(title=updated_task.title, done=updated_task.done)
+        task.update(**updated_task.dict())
         return task
     raise HTTPException(status_code=404, detail="Task not found")
 
