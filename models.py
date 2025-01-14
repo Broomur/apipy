@@ -6,5 +6,5 @@ class Task(Base):
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    done = Column(Boolean, default=False)
+    title = Column(String, index=True, nullable=False)
+    done = Column(Boolean, nullable=False, default=False)

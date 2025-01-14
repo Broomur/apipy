@@ -1,11 +1,22 @@
+import os
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, DeclarativeBase, scoped_session
+from sqlalchemy_mixins import AllFeaturesMixin
+from dotenv import load_dotenv
 
-#DATABASE_URL = "postgresql://nicolas:nicolas@localhost:6432/api_microservices_py"
-DATABASE_URL = "sqlite:///./api_microservices_py.db"
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL n'est pas défini dans le fichier .env")
 
 engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionFactory = sessionmaker(bind=engine)
+SessionLocal = scoped_session(SessionFactory)
 
-Base = declarative_base()
+
+class Base(DeclarativeBase, AllFeaturesMixin):
+    pass
+
+
+Base.set_session(SessionLocal())

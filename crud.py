@@ -10,8 +10,8 @@ def get_task(db: Session, task_id: int):
     return db.query(models.Task).filter(models.Task.id == task_id).first()
 
 
-def create_task(db: Session, title: str):
-    db_task = models.Task(title=title)
+def create_task(db: Session, title: str, done: bool):
+    db_task = models.Task(title=title, done=done)
     db.add(db_task)
     db.commit()
     db.refresh(db_task)
