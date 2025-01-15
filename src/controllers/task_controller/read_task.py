@@ -3,7 +3,7 @@ from ...models import TaskModel
 from ...schemas import TaskResponse
 from .router import task_router
 
-@task_router.get('/{task_id}', response_model=TaskResponse)
+@task_router.get('/detail/{task_id}', response_model=TaskResponse)
 def read_task(task_id: int):
 	task = TaskModel.where(id=task_id).first()
 	if task:
