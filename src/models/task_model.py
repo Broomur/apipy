@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from .database import Base
+from ..database import Base
 
 
 class TaskModel(Base):
@@ -8,3 +8,4 @@ class TaskModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True, nullable=False)
     done = Column(Boolean, nullable=False, default=False)
+    user_id = Column(Integer, nullable=False)

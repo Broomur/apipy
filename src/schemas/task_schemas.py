@@ -3,7 +3,8 @@ from pydantic import BaseModel
 
 class TaskBase(BaseModel):
     title: str
-    done: bool
+    done: bool = False
+    user_id: int
 
 
 class TaskCreate(TaskBase):
